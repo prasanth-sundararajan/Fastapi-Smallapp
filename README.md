@@ -50,6 +50,16 @@ Expected JSON responses:
 {"item_id": 42, "q": "blue"}
 ```
 
+## Task completed
+
+This demo provides three API routes: a welcome route, a greeting route, and an item route that returns an item number and an optional search value.
+
+## Beginner task question
+
+**Can you build a small FastAPI service with a home page, a route that greets someone by name, and a route that accepts an item number plus an optional query value?**
+
+Run the service and try each URL in a browser or PowerShell. Then open `/docs` to see and test the API interactively.
+
 ## Screenshots
 
 Home response:
