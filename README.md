@@ -1,83 +1,66 @@
-# CAIE Basic FastAPI App
+# Basic FastAPI App
 
-## Purpose
+> Three small endpoints that show FastAPI routing, path and query parameters, and auto docs.
 
-This small app demonstrates how an API receives a web request and returns data as JSON. A browser, website, or another program can make a request to one of the app's URLs and use the response.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-For example, `/items/42?q=blue` asks for item `42` and includes the optional value `blue`. FastAPI puts those URL values into the function parameters. The current demo returns the values it received; it does not search a database or retrieve a real product.
+## Overview
 
-## Endpoints
+A minimal [FastAPI](https://fastapi.tiangolo.com) service. It shows async route handlers, typed path parameters, an optional query parameter and the interactive Swagger UI that FastAPI generates automatically.
 
-| Method | URL | What it returns |
-| --- | --- | --- |
-| `GET` | `/` | A welcome message |
-| `GET` | `/greet/{name}` | A greeting using the name in the URL |
-| `GET` | `/items/{item_id}` | The item ID and optional `q` query value |
+## Features
 
-`{item_id}` is a required integer in the URL. `q` is optional and follows a `?`, for example `/items/42?q=blue`. If it is omitted, the response contains `"q": null`.
+- `GET /` welcome message
+- `GET /greet/{name}` path parameter
+- `GET /items/{item_id}?q=` typed path + optional query
+- Interactive docs at `/docs`
 
-## Run the App
+## Demo
 
-In PowerShell, run this from the workspace root (`C:\Users\HP\GenAI_Program`):
+![Home](home-response.png)
+![Greeting](greeting-response.png)
+![Item with query](item-with-query.png)
+![Interactive docs](interactive-docs.png)
 
-```powershell
-.\venv\Scripts\python.exe -m uvicorn main:app --app-dir fastapi-smallapp --reload --port 8002
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| API | FastAPI |
+| Server | Uvicorn |
+
+## Project structure
+
+```text
+.
+├── main.py
+└── requirements.txt
 ```
 
-Keep the terminal open while the server runs. If port `8002` is already in use, replace it with another port, such as `8003`, in both the command and the URLs below. Stop the server with `Ctrl+C`.
+## Getting started
 
-## Try the App
+**Prerequisites:** Python 3.10+
 
-Open these URLs in a browser:
-
-- Home: <http://127.0.0.1:8002/>
-- Greeting: <http://127.0.0.1:8002/greet/Ada>
-- Item without `q`: <http://127.0.0.1:8002/items/42>
-- Item with `q`: <http://127.0.0.1:8002/items/42?q=blue>
-- Interactive API documentation: <http://127.0.0.1:8002/docs>
-
-You can also check the item responses from a second PowerShell terminal:
-
-```powershell
-Invoke-RestMethod "http://127.0.0.1:8002/items/42"
-Invoke-RestMethod "http://127.0.0.1:8002/items/42?q=blue"
+```bash
+git clone https://github.com/prasanth-sundararajan/Fastapi-Smallapp.git
+cd Fastapi-Smallapp
+python -m venv .venv
+# Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Expected JSON responses:
+## Usage
 
-```json
-{"item_id": 42, "q": null}
-{"item_id": 42, "q": "blue"}
+```bash
+uvicorn main:app --reload
 ```
+Open http://127.0.0.1:8000/docs
 
-## Task completed
+## License
 
-This demo provides three API routes: a welcome route, a greeting route, and an item route that returns an item number and an optional search value.
+Released under the [MIT License](LICENSE).
 
-## Beginner task question
+## Author
 
-**Can you build a small FastAPI service with a home page, a route that greets someone by name, and a route that accepts an item number plus an optional query value?**
-
-Run the service and try each URL in a browser or PowerShell. Then open `/docs` to see and test the API interactively.
-
-## Screenshots
-
-Home response:
-
-![Home endpoint response](screenshots/home-response.png)
-
-Greeting response:
-
-![Greeting endpoint response](screenshots/greeting-response.png)
-
-Item response without the optional query value:
-
-![Item response without q](screenshots/item-without-query.png)
-
-Item response with `q=blue`:
-
-![Item response with q](screenshots/item-with-query.png)
-
-Interactive API documentation:
-
-![FastAPI interactive docs listing the app endpoints](screenshots/interactive-docs.png)
+**Prasanth Sundararajan**, Senior SRE and AI Engineer  
+[LinkedIn](https://www.linkedin.com/in/prasanth-s-a093a7109/) · [GitHub](https://github.com/prasanth-sundararajan)
